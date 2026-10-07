@@ -1,11 +1,3 @@
-# Unity .gitignore Template
-# Source: https://github.com/github/gitignore/blob/main/Unity.gitignore
-# Last synced: 2026-07-02
-# License: CC0-1.0
-#
-# This template is maintained from the github/gitignore repository
-# and distributed under Creative Commons Zero v1.0 Universal license.
-
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
@@ -110,5 +102,11 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
+<<<<<<< HEAD
+=======
+# UI Toolkit auto generated files
+/UIElementsSchema/
+
+>>>>>>> 3436af51f34c3ef4df0ee3369ef883cc217912c8
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*

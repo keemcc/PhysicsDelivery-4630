@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour 
 { 
     public float moveSpeed = 5f; 
+    public GameManager gameManager;
+
 
     private Rigidbody rb; 
     private Vector2 moveInput; 
@@ -13,33 +15,52 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
     } 
 
-    void Update() 
-    { 
-        float horizontal = 0f; 
-        float vertical = 0f;
-        if (Keyboard.current.aKey.isPressed) 
-            horizontal = -1f; 
+void Update() 
+ { 
+     if (!gameManager.isPlaying) 
+     { 
+         moveInput = Vector2.zero; 
+         return; 
+     } 
+  
+    float horizontal = 0f; 
+     float vertical = 0f; 
+  
+    if (Keyboard.current.aKey.isPressed) 
+         horizontal = -1f; 
+  
+    if (Keyboard.current.dKey.isPressed) 
+         horizontal = 1f; 
+  
+    if (Keyboard.current.sKey.isPressed) 
+         vertical = -1f; 
+  
+    if (Keyboard.current.wKey.isPressed) 
+         vertical = 1f; 
+  
+    moveInput = 
+         new Vector2(horizontal, vertical); 
+ } 
 
-        if (Keyboard.current.dKey.isPressed) 
-            horizontal = 1f; 
+void FixedUpdate()
+ {
+     if (!gameManager.isPlaying)
+         return;
 
-        if (Keyboard.current.sKey.isPressed) 
-            vertical = -1f; 
+    Vector3 movement =
+         new Vector3(
+             moveInput.x,
+             0f,
+             moveInput.y
+         );
 
-        if (Keyboard.current.wKey.isPressed) 
-            vertical = 1f; 
+    movement = movement.normalized;
 
-        moveInput = new Vector2(horizontal, vertical); 
-    } 
-
-    void FixedUpdate() 
-    { 
-        Vector3 movement = 
-            new Vector3(moveInput.x, 0f, moveInput.y); 
-        movement = movement.normalized; 
-        rb.MovePosition( 
-            rb.position + 
-            movement * moveSpeed * Time.fixedDeltaTime 
-        ); 
-    } 
+    rb.MovePosition(
+         rb.position +
+         movement *
+         moveSpeed *
+         Time.fixedDeltaTime
+     );
+ }
 } 

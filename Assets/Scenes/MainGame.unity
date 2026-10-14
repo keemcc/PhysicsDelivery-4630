@@ -324,6 +324,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   targetScore: 3
   startingAttempts: 3
+  deliveriesText: {fileID: 446596024}
+  attemptsText: {fileID: 1702483743}
+  statusText: {fileID: 1997362425}
   isPlaying: 1
 --- !u!1 &320731519
 GameObject:
@@ -1562,6 +1565,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoalZone
   gameManager: {fileID: 198568198}
+--- !u!1 &1246343365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246343366}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1246343366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246343365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 509.99365, y: 0, z: 657.5889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331482437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,3 +2695,4 @@ SceneRoots:
   - {fileID: 1331482440}
   - {fileID: 320731524}
   - {fileID: 1467278551}
+  - {fileID: 1246343366}

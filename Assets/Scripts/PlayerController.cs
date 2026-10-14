@@ -39,10 +39,12 @@ void Update()
          vertical = 1f; 
   
     moveInput = 
-         new Vector2(horizontal, vertical); 
- } 
+         new Vector2(horizontal, vertical);
 
-void FixedUpdate()
+
+    }
+
+    void FixedUpdate()
  {
      if (!gameManager.isPlaying)
          return;

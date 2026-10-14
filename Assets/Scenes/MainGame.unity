@@ -880,6 +880,7 @@ GameObject:
   - component: {fileID: 655442688}
   - component: {fileID: 655442693}
   - component: {fileID: 655442692}
+  - component: {fileID: 655442694}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -976,7 +977,7 @@ Transform:
   m_GameObject: {fileID: 655442687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: 1.17, z: 0.35356}
+  m_LocalPosition: {x: 2.08, y: 0.977, z: 0.35356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 198568198}
 --- !u!54 &655442693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1023,6 +1024,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &655442694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655442687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b628b1836623daa4c8de81d14ab65570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpandPlayer
+  targetScale: {x: 1.5, y: 1.5, z: 1.5}
+  duration: 0.1
+  pushRadius: 5
+  explosionForce: 10
+  upwardModifier: 0.5
 --- !u!1 &775667976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,7 +1916,7 @@ Transform:
   m_GameObject: {fileID: 1467278546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6, y: 0.84497, z: -2.69}
+  m_LocalPosition: {x: 0.772, y: 0.84497, z: -3.538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2629,6 +2647,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5488749406084056847, guid: 636af3a03ca9fcfe3accf03fc3a60c56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004005548432160992, guid: 636af3a03ca9fcfe3accf03fc3a60c56, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

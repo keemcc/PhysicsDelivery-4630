@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour 
 { 
     public float moveSpeed = 5f; 
+    public float acceleration = 20f;  // how quickly input changes velocity; lower = slidier
+    public float friction = 4f;       // how quickly the player slows with no input; lower = slides further
     public GameManager gameManager;
 
 
@@ -58,11 +60,18 @@ void Update()
 
     movement = movement.normalized;
 
-    rb.MovePosition(
-         rb.position +
-         movement *
-         moveSpeed *
-         Time.fixedDeltaTime
-     );
+    Vector3 v = rb.linearVelocity;
+     Vector3 flat = new Vector3(v.x, 0f, v.z);
+
+    if (movement.sqrMagnitude > 0f)
+         flat = Vector3.MoveTowards(
+             flat, movement * moveSpeed,
+             acceleration * Time.fixedDeltaTime);
+     else
+         flat = Vector3.MoveTowards(
+             flat, Vector3.zero,
+             friction * Time.fixedDeltaTime);
+
+    rb.linearVelocity = new Vector3(flat.x, v.y, flat.z);
  }
 } 

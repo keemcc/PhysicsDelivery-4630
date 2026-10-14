@@ -1,9 +1,14 @@
 using UnityEngine; 
+ using TMPro; 
   
 public class GameManager : MonoBehaviour 
  { 
      public int targetScore = 3; 
      public int startingAttempts = 3; 
+  
+    public TMP_Text deliveriesText; 
+     public TMP_Text attemptsText; 
+     public TMP_Text statusText; 
   
     private int currentScore = 0; 
      private int currentAttempts; 
@@ -13,6 +18,10 @@ public class GameManager : MonoBehaviour
     void Start() 
      { 
          currentAttempts = startingAttempts; 
+  
+        UpdateUI(); 
+  
+        statusText.text = ""; 
      } 
   
     public void AddScore() 
@@ -22,12 +31,7 @@ public class GameManager : MonoBehaviour
   
         currentScore++; 
   
-        Debug.Log( 
-             "Score: " + 
-             currentScore + 
-             " / " + 
-             targetScore 
-         ); 
+        UpdateUI(); 
   
         if (currentScore >= targetScore) 
          { 
@@ -42,10 +46,7 @@ public class GameManager : MonoBehaviour
   
         currentAttempts--; 
   
-        Debug.Log( 
-             "Attempts: " + 
-             currentAttempts 
-         ); 
+        UpdateUI(); 
   
         if (currentAttempts <= 0) 
          { 
@@ -53,17 +54,32 @@ public class GameManager : MonoBehaviour
          } 
      } 
   
+    void UpdateUI() 
+     { 
+         deliveriesText.text = 
+             "Deliveries: " + 
+             currentScore + 
+             " / " + 
+             targetScore; 
+  
+        attemptsText.text = 
+             "Attempts: " + 
+             currentAttempts; 
+     } 
+  
     void WinGame() 
      { 
          isPlaying = false; 
   
-        Debug.Log("YOU WIN!"); 
+        statusText.text = 
+             "YOU WIN!"; 
      } 
   
     void LoseGame() 
      { 
          isPlaying = false; 
   
-        Debug.Log("GAME OVER"); 
+        statusText.text = 
+             "GAME OVER"; 
      } 
  } 

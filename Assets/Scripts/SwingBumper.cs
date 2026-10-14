@@ -2,6 +2,7 @@ using UnityEngine;
 
 // Put this on the bumper pivot object. The pivot's origin is the hinge point.
 // Swings out to swingAngle quickly (like a pinball flipper), then returns to rest.
+[RequireComponent(typeof(Rigidbody))]
 public class SwingBumper : MonoBehaviour
 {
     [Header("Swing")]
@@ -9,6 +10,10 @@ public class SwingBumper : MonoBehaviour
     public float swingSpeed = 600f;       // degrees/sec going out
     public float returnSpeed = 200f;      // degrees/sec coming back
     public Vector3 swingAxis = Vector3.up; // local axis to rotate around (flip sign of angle to reverse)
+
+    [Header("Push")]
+    public float pushMultiplier = 1f;     // scales how fast the player is shoved (1 = matches the bumper's surface speed)
+    public float maxPushSpeed = 15f;      // cap on the shove speed (units/sec)
 
     [Header("Trigger")]
     public Collider triggerZone;          // a trigger collider (can be on another object). If empty, uses a trigger collider on this object.
@@ -19,12 +24,24 @@ public class SwingBumper : MonoBehaviour
     float currentAngle;
     enum State { Idle, Swinging, Returning }
     State state = State.Idle;
+    Rigidbody rb;
     int playersInside;
     float idleTimer;
 
     void Awake()
     {
         restRotation = transform.localRotation;
+
+        // Kinematic body so the swing is a proper physics move instead of a teleporting collider.
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("SwingBumper: add a Rigidbody to this object.", this);
+            enabled = false;
+            return;
+        }
+        rb.isKinematic = true;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
         if (triggerZone == null) triggerZone = GetComponent<Collider>();
         if (triggerZone == null)
@@ -59,29 +76,52 @@ public class SwingBumper : MonoBehaviour
         idleTimer = 0f;
     }
 
-    void Update()
+    void OnCollisionEnter(Collision collision) { Push(collision); }
+    void OnCollisionStay(Collision collision) { Push(collision); }
+
+    // Shove the player along the direction the bumper surface is moving, flat on the ground.
+    void Push(Collision collision)
+    {
+        if (state != State.Swinging) return;
+        if (!collision.collider.CompareTag(playerTag)) return;
+        Rigidbody body = collision.rigidbody;
+        if (body == null) return;
+
+        Vector3 worldAxis = transform.TransformDirection(swingAxis.normalized);
+        Vector3 angularVelocity = worldAxis * (Mathf.Deg2Rad * swingSpeed * Mathf.Sign(swingAngle));
+        Vector3 surfaceVelocity = Vector3.Cross(angularVelocity, collision.GetContact(0).point - transform.position);
+        surfaceVelocity.y = 0f;
+
+        Vector3 push = Vector3.ClampMagnitude(surfaceVelocity * pushMultiplier, maxPushSpeed);
+        Vector3 v = body.linearVelocity;
+        body.linearVelocity = new Vector3(push.x, Mathf.Min(v.y, 0f), push.z); // no upward launch
+    }
+
+    void FixedUpdate()
     {
         if (state == State.Swinging)
         {
-            currentAngle = Mathf.MoveTowards(currentAngle, swingAngle, swingSpeed * Time.deltaTime);
+            currentAngle = Mathf.MoveTowards(currentAngle, swingAngle, swingSpeed * Time.fixedDeltaTime);
             if (Mathf.Approximately(currentAngle, swingAngle)) state = State.Returning;
         }
         else if (state == State.Returning)
         {
-            currentAngle = Mathf.MoveTowards(currentAngle, 0f, returnSpeed * Time.deltaTime);
+            currentAngle = Mathf.MoveTowards(currentAngle, 0f, returnSpeed * Time.fixedDeltaTime);
             if (Mathf.Approximately(currentAngle, 0f)) state = State.Idle;
         }
         else
         {
             if (playersInside > 0)
             {
-                idleTimer += Time.deltaTime;
+                idleTimer += Time.fixedDeltaTime;
                 if (idleTimer >= retriggerDelay) Swing();
             }
             return;
         }
 
-        transform.localRotation = restRotation * Quaternion.AngleAxis(currentAngle, swingAxis.normalized);
+        Quaternion local = restRotation * Quaternion.AngleAxis(currentAngle, swingAxis.normalized);
+        Quaternion parentRot = transform.parent != null ? transform.parent.rotation : Quaternion.identity;
+        rb.MoveRotation(parentRot * local);
     }
 }
 

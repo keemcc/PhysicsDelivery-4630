@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; 
     public float acceleration = 20f;  // how quickly input changes velocity; lower = slidier
     public float friction = 4f;       // how quickly the player slows with no input; lower = slides further
-    public GameManager gameManager;
-
 
     private Rigidbody rb; 
     private Vector2 moveInput; 
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
 void Update() 
  { 
-     if (!gameManager.isPlaying) 
+     if (!GameManager.instance.isPlaying) 
      { 
          moveInput = Vector2.zero; 
          return; 
@@ -48,7 +46,7 @@ void Update()
 
     void FixedUpdate()
  {
-     if (!gameManager.isPlaying)
+     if (!GameManager.instance.isPlaying)
          return;
 
     Vector3 movement =

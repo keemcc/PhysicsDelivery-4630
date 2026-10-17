@@ -1,7 +1,7 @@
 using UnityEngine; 
  using TMPro; 
   
-public class GameManager : MonoBehaviour 
+public class GameManager : SingletonBehaviour<GameManager> 
  { 
      public int targetScore = 3; 
      public int startingAttempts = 3; 

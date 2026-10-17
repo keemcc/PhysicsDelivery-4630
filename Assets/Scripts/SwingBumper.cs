@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 // Put this on the bumper pivot object. The pivot's origin is the hinge point.
 // Swings out to swingAngle quickly (like a pinball flipper), then returns to rest.
@@ -53,7 +54,7 @@ public class SwingBumper : MonoBehaviour
         // Trigger events only go to scripts on the collider's own object, so relay them here.
         var relay = triggerZone.GetComponent<SwingBumperTriggerRelay>();
         if (relay == null) relay = triggerZone.gameObject.AddComponent<SwingBumperTriggerRelay>();
-        relay.owner = this;
+        relay.owners.Add(this);
     }
 
     public void OnZoneEnter(Collider other)
@@ -128,15 +129,27 @@ public class SwingBumper : MonoBehaviour
 // Auto-added to the trigger zone object; forwards player entry to the SwingBumper.
 public class SwingBumperTriggerRelay : MonoBehaviour
 {
-    [HideInInspector] public SwingBumper owner;
+    [HideInInspector] public List<SwingBumper> owners = new List<SwingBumper>();
 
     void OnTriggerEnter(Collider other)
     {
-        if (owner != null) owner.OnZoneEnter(other);
+        if (owners?.Count > 0)
+        {
+            for (int i = 0; i < owners.Count; i++)
+            {
+                owners[i].OnZoneEnter(other);
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (owner != null) owner.OnZoneExit(other);
+        if (owners?.Count > 0)
+        {
+            for (int i = 0; i < owners.Count; i++)
+            {
+                owners[i].OnZoneExit(other);
+            }
+        }
     }
 }

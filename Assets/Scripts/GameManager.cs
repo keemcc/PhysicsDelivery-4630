@@ -21,6 +21,7 @@ public class GameManager : SingletonBehaviour<GameManager>
   
         UpdateUI(); 
   
+        if (statusText != null)
         statusText.text = ""; 
      } 
   

@@ -56,30 +56,34 @@ public class GameManager : SingletonBehaviour<GameManager>
   
     void UpdateUI() 
      { 
+        if (deliveriesText != null)
          deliveriesText.text = 
              "Deliveries: " + 
              currentScore + 
              " / " + 
-             targetScore; 
-  
-        attemptsText.text = 
+             targetScore;
+
+        if (attemptsText != null)
+            attemptsText.text = 
              "Attempts: " + 
              currentAttempts; 
      } 
   
     void WinGame() 
      { 
-         isPlaying = false; 
-  
-        statusText.text = 
+         isPlaying = false;
+
+        if (statusText != null)
+            statusText.text = 
              "YOU WIN!"; 
      } 
   
     void LoseGame() 
      { 
-         isPlaying = false; 
-  
-        statusText.text = 
+         isPlaying = false;
+
+        if (statusText != null)
+            statusText.text = 
              "GAME OVER"; 
      } 
  } 

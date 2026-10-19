@@ -15,6 +15,20 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
     } 
 
+    public Transform resetPoint;      // where this player is sent when a hazard resets them
+
+    // Teleport the player to its reset point and stop all motion.
+    public void ResetToPoint()
+    {
+        if (resetPoint == null) return;
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.position = resetPoint.position;
+        transform.position = resetPoint.position;
+        moveInput = Vector2.zero;
+    }
+
 void Update() 
  { 
      if (!GameManager.instance.isPlaying) 

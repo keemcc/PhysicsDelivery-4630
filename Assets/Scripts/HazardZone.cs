@@ -6,6 +6,13 @@ public class HazardZone : MonoBehaviour
   
     void OnTriggerEnter(Collider other) 
      { 
+         if (other.CompareTag("Player"))
+         {
+             PlayerController player = other.GetComponentInParent<PlayerController>();
+             if (player != null) player.ResetToPoint();
+             return;
+         }
+
          if (other.CompareTag("DeliveryObject")) 
          { 
              Debug.Log("Delivery Failed!"); 

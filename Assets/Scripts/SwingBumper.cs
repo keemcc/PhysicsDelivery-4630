@@ -19,6 +19,8 @@ public class SwingBumper : MonoBehaviour
     [Header("Trigger")]
     public Collider triggerZone;          // a trigger collider (can be on another object). If empty, uses a trigger collider on this object.
     public string playerTag = "Player";
+    public bool activateOnBall = true;    // also swing when the ball enters the trigger zone
+    public string ballTag = "DeliveryObject";
     public float retriggerDelay = 0.5f;   // seconds after returning to rest before swinging again if the player is still in the zone
 
     Quaternion restRotation;
@@ -59,15 +61,20 @@ public class SwingBumper : MonoBehaviour
 
     public void OnZoneEnter(Collider other)
     {
-        if (!other.CompareTag(playerTag)) return;
+        if (!IsActivator(other)) return;
         playersInside++;
         Swing();
     }
 
     public void OnZoneExit(Collider other)
     {
-        if (!other.CompareTag(playerTag)) return;
+        if (!IsActivator(other)) return;
         playersInside = Mathf.Max(0, playersInside - 1);
+    }
+
+    bool IsActivator(Collider other)
+    {
+        return other.CompareTag(playerTag) || (activateOnBall && other.CompareTag(ballTag));
     }
 
     public void Swing()

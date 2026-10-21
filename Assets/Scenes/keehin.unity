@@ -1773,11 +1773,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 722006514013242656, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 43
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 1647134710422091188, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_text
-      value: Deliver 3 objects. Avoid the hazards. Fall to reset.
+      value: 'Deliver 3 objects. Avoid the hazards. Fall to reset.
+
+        Press
+        space to expand.'
       objectReference: {fileID: 0}
     - target: {fileID: 1647134710422091188, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_fontSize

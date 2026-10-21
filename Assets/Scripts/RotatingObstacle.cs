@@ -25,8 +25,8 @@ public class RotatingObstacle : MonoBehaviour
   
             transform.Rotate( 
                  0f, 
-                 rotationThisFrame, 
-                 0f 
+                 0f, 
+                 rotationThisFrame
              ); 
          } 
      } 

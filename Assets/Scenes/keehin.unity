@@ -1777,7 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1647134710422091188, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_text
-      value: Deliver 3 objects. Avoid the hazards.
+      value: Deliver 3 objects. Avoid the hazards. Fall to reset.
       objectReference: {fileID: 0}
     - target: {fileID: 1647134710422091188, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_fontSize
@@ -1825,11 +1825,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5030330447441141282, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_margin.z
-      value: -125.78021
+      value: -333.7364
       objectReference: {fileID: 0}
     - target: {fileID: 5030330447441141282, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_fontSizeBase
       value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030330447441141282, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522923352094351569, guid: 5c24460f9ad65da9db742cd6d55471da, type: 3}
       propertyPath: m_fontSize

@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "PhysicsDelivery-4630.slnx"
+    "dotnet.defaultSolution": "initialize_repo.slnx"
 }

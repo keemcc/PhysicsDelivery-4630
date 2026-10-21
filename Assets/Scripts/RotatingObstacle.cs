@@ -13,11 +13,6 @@ public class RotatingObstacle : MonoBehaviour
   
     void Update() 
      { 
-         if (Keyboard.current.spaceKey.wasPressedThisFrame) 
-         { 
-             isActive = !isActive; 
-         } 
-  
         if (isActive) 
          { 
              float rotationThisFrame = 

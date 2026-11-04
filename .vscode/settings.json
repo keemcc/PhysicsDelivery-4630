@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "initialize_repo.slnx"
+    "dotnet.defaultSolution": "prototype.slnx"
 }

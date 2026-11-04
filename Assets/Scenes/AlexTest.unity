@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExpandPlayer
   targetScale: {x: 1.5, y: 1.5, z: 1.5}
   duration: 0.1
-  pushRadius: 5
+  pushRadius: 2
   explosionForce: 10
   upwardModifier: 0.5
 --- !u!114 &655442695

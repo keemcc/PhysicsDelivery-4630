@@ -70,6 +70,13 @@ void Update()
              moveInput.y
          );
 
+    // Make input relative to the camera's facing so W always moves "into" the screen.
+    if (Camera.main != null)
+    {
+        float camYaw = Camera.main.transform.eulerAngles.y;
+        movement = Quaternion.Euler(0f, camYaw, 0f) * movement;
+    }
+
     movement = movement.normalized;
 
     Vector3 v = rb.linearVelocity;

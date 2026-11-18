@@ -23,10 +23,10 @@ public class PlayerSprint : MonoBehaviour
 
     void Update()
     {
-        if (playerMovement == null || playerMovement.gameManager == null) return;
+        if (playerMovement == null || GameManager.instance == null) return;
 
         // Don't process sprinting if the game isn't actively playing
-        if (!playerMovement.gameManager.isPlaying) return;
+        if (!GameManager.instance.isPlaying) return;
 
         // Check if the Left Shift key is currently held down
         if (Keyboard.current.leftShiftKey.isPressed)

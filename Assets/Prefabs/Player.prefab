@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5313180746947441983}
   - component: {fileID: 7115496306671737661}
   - component: {fileID: 3017136494927609675}
+  - component: {fileID: 2317872424273190811}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -159,7 +160,7 @@ MonoBehaviour:
   moveSpeed: 5
   acceleration: 20
   friction: 4
-  gameManager: {fileID: 0}
+  resetPoint: {fileID: 0}
 --- !u!114 &3017136494927609675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +178,17 @@ MonoBehaviour:
   pushRadius: 1
   explosionForce: 5
   upwardModifier: 0
+--- !u!114 &2317872424273190811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644609767685155372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee043f3c0a4cf284e989d82952370613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSprint
+  normalSpeed: 3.5
+  sprintSpeed: 7

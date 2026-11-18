@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 4bf7ba4394b1a9f47afc3eb9aa7aaa9b
   - enabled: 1
-    path: Assets/Scenes/MainGame.unity
+    path: Assets/Scenes/AlexTest.unity
     guid: f22b5a653500631c0b8271203e327e31
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 2fc55c35b57c8b640b9dfbb9f5d19961
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
